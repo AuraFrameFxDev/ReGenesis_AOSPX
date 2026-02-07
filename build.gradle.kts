@@ -13,8 +13,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.parcelize") version "2.3.0" apply false
 
     // Android plugins
-    id("com.android.application") version "9.1.0-alpha07" apply false
-    id("com.android.library") version "9.1.0-alpha07" apply false
+    id("com.android.application") version "9.1.0-alpha06" apply false
+    id("com.android.library") version "9.1.0-alpha06" apply false
 
     // Other plugins - Updated to latest stable versions
     id("com.google.dagger.hilt.android") version "2.59" apply false
@@ -23,18 +23,7 @@ plugins {
     id("com.google.firebase.crashlytics") version "3.0.6" apply false
 }
 
-// Clean task for the root project
-tasks.register("clean", Delete::class) {
-    delete(rootProject.layout.buildDirectory)
-}
 
-// Configure all projects
-// Configure all projects
-allprojects {
-    // Common configurations can go here
-    group = "dev.aurakai.auraframefx"
-    version = "0.1.0"
-}
 
 
 val skipTests = providers.gradleProperty("aurafx.skip.tests").orElse("false").map { it.toBoolean() }.getOrElse(false)!!

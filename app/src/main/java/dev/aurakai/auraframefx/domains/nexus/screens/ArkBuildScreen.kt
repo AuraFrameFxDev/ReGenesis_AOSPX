@@ -36,8 +36,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import dev.aurakai.auraframefx.models.core.ArkStatus
-import dev.aurakai.auraframefx.ui.viewmodels.ArkBuildViewModel
+import dev.aurakai.auraframefx.domains.nexus.models.core.ArkStatus
+import dev.aurakai.auraframefx.domains.aura.ui.viewmodels.ArkBuildViewModel
 
 @Composable
 fun ArkBuildScreen(
@@ -185,7 +185,7 @@ fun ArkBuildScreen(
 }
 
 @Composable
-fun ArkComponentCard(component: dev.aurakai.auraframefx.models.core.ArkComponent) {
+fun ArkComponentCard(component: dev.aurakai.auraframefx.domains.nexus.models.core.ArkComponent) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.05f))
@@ -212,3 +212,4 @@ fun ArkComponentCard(component: dev.aurakai.auraframefx.models.core.ArkComponent
         }
     }
 }
+
