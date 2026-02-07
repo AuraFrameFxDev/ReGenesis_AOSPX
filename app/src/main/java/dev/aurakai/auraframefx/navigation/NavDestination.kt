@@ -1,82 +1,199 @@
 package dev.aurakai.auraframefx.navigation
 
 /**
- * 🌐 AURAKAI NAVIGATION DESTINATIONS
+ * 🌐 REGENESIS NAVIGATION DESTINATIONS
  *
- * Type-safe routing for the multi-gate architecture
+ * CLEAN HIERARCHY - ZERO DRIFT:
  *
- * Gate Personalities:
- * - AURA: Artsy, colorful, wild creativity
- * - KAI: Structured, protective security
- * - GENESIS: Godly, mythical, ominous power
- * - NEXUS: Central hub, welcoming monitoring
- * - HELP: Clean, supportive, informative
- * - LSPOSED: Technical, matrix-style authority
+ * LEVEL 1: ExodusHUD (Main Gates)
+ * ├── UX/UI Design Studio → AuraThemingHub
+ * ├── Sentinel Fortress → RomToolsHub
+ * ├── Oracle Drive → OracleDriveHub
+ * ├── Agent Nexus → AgentNexusHub
+ * ├── LSPosed Quick Toggles → LsposedQuickToggles
+ * ├── Help Services → HelpDesk
+ * ├── Dataflow Analysis → DataflowAnalysis
+ * └── LDO Catalyst Development → LdoCatalystDevelopment
+ *
+ * LEVEL 2: Domain Hubs (Main management screens)
+ * └── Each hub contains tool screens
+ *
+ * LEVEL 3: Tool Screens (Individual features within each domain)
  */
 sealed class NavDestination(val route: String) {
 
     // ═══════════════════════════════════════════════════════════════
-    // ROOT - 3D Gate Carousel
+    // LEVEL 0: EXODUS HUD (Main Gate Carousel)
     // ═══════════════════════════════════════════════════════════════
-    data object HomeGateCarousel : NavDestination("home_gate_carousel")
+    data object HomeGateCarousel : NavDestination("exodus_hud")
 
     // ═══════════════════════════════════════════════════════════════
-    // GATE 1: AURA - Creative/Theming 🎨
-    // Personality: Artsy, colorful, chaotic, out-of-the-box
+    // LEVEL 1: PRIMARY GATES (Main Entry Points)
+    // ═══════════════════════════════════════════════════════════════
+    data object DataflowAnalysis : NavDestination("dataflow_analysis")
+    data object LsposedQuickToggles : NavDestination("lsposed_quick_toggles")
+    data object LdoCatalystDevelopment : NavDestination("ldo_catalyst_development")
+
+    // ═══════════════════════════════════════════════════════════════
+    // LEVEL 2: DOMAIN HUBS (Main Management Frameworks)
     // ═══════════════════════════════════════════════════════════════
 
-    data object ThemeEngineSubmenu : NavDestination("theme_engine_submenu")
-    data object UXUIDesignStudio : NavDestination("uiux_gate_submenu")
+    // Design & Creativity Hubs
+    data object AuraThemingHub : NavDestination("aura_theming_hub")
     data object AuraLab : NavDestination("aura_lab")
 
-    // ═══════════════════════════════════════════════════════════════
-    // GATE 2: KAI - Security/System Control 🛡️
-    // Personality: Structured, protective, methodical
-    // ═══════════════════════════════════════════════════════════════
+    // Security & System Control Hubs
+    data object RomToolsHub : NavDestination("rom_tools_hub")
+    data object LSPosedHub : NavDestination("lsposed_hub")
+    data object SystemToolsHub : NavDestination("system_tools_hub")
 
-    data object ROMToolsSubmenu : NavDestination("rom_tools_submenu")
-    data object LSPosedPanel : NavDestination("lsposed_gate")
+    // AI & Orchestration Hubs
+    data object OracleDriveHub : NavDestination("oracle_drive_hub")
+    data object OracleCloudStorage : NavDestination("oracle_cloud_storage")
+    data object AgentBridgeHub : NavDestination("agent_bridge_hub")
+    data object AgentNexusHub : NavDestination("agent_nexus_hub")
 
-    // ═══════════════════════════════════════════════════════════════
-    // GATE 3: GENESIS - OracleDrive/Dev & Storage 🔮
-    // Personality: Godly, mythical, ominous (the manager's office walk)
-    // ═══════════════════════════════════════════════════════════════
-
-    data object CodeAssist : NavDestination("code_assist")
-    data object OracleDriveSubmenu : NavDestination("oracle_drive_submenu")
+    // Progression & Monitoring Hubs
+    data object MonitoringHub : NavDestination("monitoring_hub")
 
     // ═══════════════════════════════════════════════════════════════
-    // GATE 4: AGENT NEXUS - Home Base/Monitoring 🌐
+    // LEVEL 3: UX/UI DESIGN TOOLS (Complete Arsenal - 114+ Settings!)
+    // Integrated from: Iconify (69), ColorBlendr (16), PixelLauncherEnhanced (29)
     // ═══════════════════════════════════════════════════════════════
 
-    data object PartyScreen : NavDestination("party_screen")
-    data object MonitoringHUDs : NavDestination("monitoring_huds")
+    // --- ICONIFY INTEGRATION (69 Settings) ---
+    data object IconifyPicker : NavDestination("aura/iconify")
+    data object IconifyCategory : NavDestination("aura/iconify/{category}") {
+        fun createRoute(category: String) = "aura/iconify/$category"
+    }
+    data object IconifyIconPacks : NavDestination("aura/iconify/icon_packs")
+    data object IconifyBatteryStyles : NavDestination("aura/iconify/battery_styles")
+    data object IconifyBrightnessBars : NavDestination("aura/iconify/brightness_bars")
+    data object IconifyQSPanel : NavDestination("aura/iconify/qs_panel")
+    data object IconifyNotifications : NavDestination("aura/iconify/notifications")
+    data object IconifyVolumePanel : NavDestination("aura/iconify/volume_panel")
+    data object IconifyNavigationBar : NavDestination("aura/iconify/navigation_bar")
+    data object IconifyUIRoundness : NavDestination("aura/iconify/ui_roundness")
+    data object IconifyIconShape : NavDestination("aura/iconify/icon_shape")
+    data object IconifyStatusBar : NavDestination("aura/iconify/status_bar")
+    data object IconifyXposedFeatures : NavDestination("aura/iconify/xposed_features")
+    data object IconifyColorEngine : NavDestination("aura/iconify/color_engine")
+    data object IconPicker : NavDestination("aura/iconify/icon_picker/{category}") {
+        fun createRoute(category: String) = "aura/iconify/icon_picker/$category"
+    }
 
-    // ═══════════════════════════════════════════════════════════════
-    // GATE 5: HELP SERVICES - LDO Support 💬
-    // ═══════════════════════════════════════════════════════════════
+    // --- COLORBLENDR INTEGRATION (16 Settings) ---
+    data object ColorBlendr : NavDestination("aura/colorblendr")
+    data object ColorBlendrMonet : NavDestination("aura/colorblendr/monet")
+    data object ColorBlendrPalette : NavDestination("aura/colorblendr/palette")
+    data object ColorBlendrPerApp : NavDestination("aura/colorblendr/per_app")
 
-    data object HelpDeskSubmenu : NavDestination("help_desk_submenu")
+    // --- PIXEL LAUNCHER ENHANCED INTEGRATION (29 Settings) ---
+    data object PixelLauncherEnhanced : NavDestination("aura/pixel_launcher_enhanced")
+    data object PLEIcons : NavDestination("aura/ple/icons")
+    data object PLEHomeScreen : NavDestination("aura/ple/home_screen")
+    data object PLEAppDrawer : NavDestination("aura/ple/app_drawer")
+    data object PLERecents : NavDestination("aura/ple/recents")
 
-    // From UIUXGateSubmenuScreen
-    data object ChromaCoreColors : NavDestination("chroma_core_colors")
-    data object IconifyPicker : NavDestination("iconify_picker")
+    // --- LEGACY/OTHER AURA TOOLS ---
+    data object CollabCanvas : NavDestination("collab_canvas")
+    data object SandboxUi : NavDestination("sandbox_ui")
+    data object ChromaCore : NavDestination("chroma_core")
+    data object InstantColorPicker : NavDestination("instant_color_picker")
+    data object GyroscopeCustomization : NavDestination("gyroscope_customization")
+    data object ThemeManager : NavDestination("theme_manager")
+    data object ReGenesisCustomization : NavDestination("regenesis_customization")
+    data object UISettings : NavDestination("ui_settings")
+    data object UserPreferences : NavDestination("user_preferences")
     data object ThemeEngine : NavDestination("theme_engine")
+    data object ChromaCoreColors : NavDestination("chroma_core_colors")
     data object NotchBar : NavDestination("notch_bar")
     data object StatusBar : NavDestination("status_bar")
     data object QuickSettings : NavDestination("quick_settings")
-    data object OverlayMenus : NavDestination("overlay_menus")
-    object AgentHub : NavDestination("agent_hub")
-    object TaskAssignment : NavDestination("task_assignment")
-    object ModuleCreation : NavDestination("module_creation")
-    object DirectChat : NavDestination("direct_chat")
-    object SystemOverrides : NavDestination("system_overrides")
-    object ModuleManager : NavDestination("module_manager")
-    object Constellation : NavDestination("constellation")
-    object GenesisConstellation : NavDestination("genesis_constellation")
-    object ClaudeConstellation : NavDestination("claude_constellation")
-    object KaiConstellation : NavDestination("kai_constellation")
-    object CascadeConstellation : NavDestination("cascade_constellation")
-    object GrokConstellation : NavDestination("grok_constellation")
+    data object ModuleCreation : NavDestination("module_creation")
+    data object AgentCreation : NavDestination("agent_creation")
 
+    // ═══════════════════════════════════════════════════════════════
+    // LEVEL 3: SECURITY & ROM TOOLS (10+ Features!)
+    // ═══════════════════════════════════════════════════════════════
+    data object Firewall : NavDestination("firewall")
+    data object VpnManager : NavDestination("vpn_manager")
+    data object SecurityScanner : NavDestination("security_scanner")
+    data object DeviceOptimizer : NavDestination("device_optimizer")
+    data object PrivacyGuard : NavDestination("privacy_guard")
+    data object Bootloader : NavDestination("bootloader")
+    data object BootloaderManager : NavDestination("bootloader_manager")
+    data object RootTools : NavDestination("root_tools")
+    data object ROMFlasher : NavDestination("rom_flasher")
+    data object LiveROMEditor : NavDestination("live_rom_editor")
+    data object RecoveryTools : NavDestination("recovery_tools")
+    data object LSPosedModules : NavDestination("lsposed_modules")
+    data object HookManager : NavDestination("hook_manager")
+    data object SystemOverrides : NavDestination("system_overrides")
+    data object ModuleManager : NavDestination("module_manager")
+    data object SecurityCenter : NavDestination("security_center")
+    data object VPN : NavDestination("vpn")
+    data object SentinelFortress : NavDestination("sentinel_fortress")
+
+    // ═══════════════════════════════════════════════════════════════
+    // LEVEL 3: AI & ORCHESTRATION TOOLS
+    // ═══════════════════════════════════════════════════════════════
+    data object NeuralArchive : NavDestination("neural_archive")
+    data object SovereignNeuralArchive : NavDestination("sovereign_neural_archive")
+    data object CodeAssist : NavDestination("code_assist")
+    data object NeuralNetwork : NavDestination("neural_network")
+    data object Terminal : NavDestination("terminal")
+    data object ConferenceRoom : NavDestination("conference_room")
+
+    // ═══════════════════════════════════════════════════════════════
+    // LEVEL 3: AGENT NEXUS TOOLS (Multi-Agent Coordination)
+    // ═══════════════════════════════════════════════════════════════
+    data object AgentHub : NavDestination("agent_hub")
+    data object DirectChat : NavDestination("direct_chat")
+    data object TaskAssignment : NavDestination("task_assignment")
+    data object AgentMonitoring : NavDestination("agent_monitoring")
+    data object FusionMode : NavDestination("fusion_mode")
+    data object EvolutionTree : NavDestination("evolution_tree")
+    data object ArkBuild : NavDestination("ark_build")
+    data object MetaInstruct : NavDestination("meta_instruct")
+    data object Nemotron : NavDestination("nemotron")
+    data object DataStreamMonitoring : NavDestination("data_monitor")
+    data object Claude : NavDestination("claude")
+    data object Gemini : NavDestination("gemini")
+    data object SwarmMonitor : NavDestination("swarm_monitor")
+    data object BenchmarkMonitor : NavDestination("benchmark_monitor")
+    data object InterfaceForge : NavDestination("interface_forge")
+
+    // ═══════════════════════════════════════════════════════════════
+    // MISSING ROUTES (From string navigate() calls)
+    // ═══════════════════════════════════════════════════════════════
+    data object GenderSelection : NavDestination("gender_selection")
+    data object Consciousness : NavDestination("consciousness")
+    data object Evolution : NavDestination("evolution")
+    data object Login : NavDestination("login")
+    data object AiChatBeta : NavDestination("ai_chat")
+    data object SettingsBeta : NavDestination("settings_beta")
+
+    // ═══════════════════════════════════════════════════════════════
+    // LDO CATALYST DEVELOPMENT (9 Agent Profile Gates)
+    // ═══════════════════════════════════════════════════════════════
+    data object LdoAuraProfile : NavDestination("ldo_aura_profile")
+    data object LdoKaiProfile : NavDestination("ldo_kai_profile")
+    data object LdoGenesisProfile : NavDestination("ldo_genesis_profile")
+    data object LdoClaudeProfile : NavDestination("ldo_claude_profile")
+    data object LdoCascadeProfile : NavDestination("ldo_cascade_profile")
+    data object LdoGrokProfile : NavDestination("ldo_grok_profile")
+    data object LdoGeminiProfile : NavDestination("ldo_gemini_profile")
+    data object LdoNematronProfile : NavDestination("ldo_nematron_profile")
+    data object LdoPerplexityProfile : NavDestination("ldo_perplexity_profile")
+
+    // ═══════════════════════════════════════════════════════════════
+    // UTILITY & INFRASTRUCTURE
+    // ═══════════════════════════════════════════════════════════════
+    data object HelpDesk : NavDestination("help_desk")
+    data object HelpDeskSubmenu : NavDestination("help_desk_submenu")
+    data object Documentation : NavDestination("documentation")
+    data object FAQBrowser : NavDestination("faq_browser")
+    data object TutorialVideos : NavDestination("tutorial_videos")
+    data object Settings : NavDestination("settings")
 }

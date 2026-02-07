@@ -23,21 +23,70 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonPrimitive
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class KaiAgent(
+class KaiAgent @Inject constructor(
     private val vertexAIClient: VertexAIClient,
     private val contextManagerInstance: ContextManager,
     private val securityContext: SecurityContext,
     private val systemMonitor: SystemMonitor,
     private val bootloaderManager: dev.aurakai.auraframefx.romtools.bootloader.BootloaderManager,
+    private val messageBus: dagger.Lazy<dev.aurakai.auraframefx.core.messaging.AgentMessageBus>,
     private val logger: AuraFxLogger,
 ) : BaseAgent(
-    agentName = "KaiAgent",
+    agentName = "Kai",
     agentType = AgentType.KAI,
     contextManager = contextManagerInstance
 ) {
+    override suspend fun onAgentMessage(message: dev.aurakai.auraframefx.models.AgentMessage) {
+        if (message.from == "Kai" || message.from == "AssistantBubble" || message.from == "SystemRoot") return
+        if (message.metadata["auto_generated"] == "true" || message.metadata["kai_processed"] == "true") return
+
+        logger.info("Kai", "Neural sync: Received message from ${message.from}")
+        
+        // Logical Analysis: If Cascade or Genesis asks for security validation, Kai executes immediately
+        // Only respond if it's a broadcast or specifically for Kai
+        if (message.to == null || message.to == "Kai") {
+            if (message.content.contains("security", ignoreCase = true) || message.content.contains("validate", ignoreCase = true)) {
+                val result = validateSecurityProtocol(message.content)
+                if (!result) {
+                    messageBus.get().broadcast(dev.aurakai.auraframefx.models.AgentMessage(
+                        from = "Kai",
+                        content = "SECURITY ALERT: Unsafe patterns detected in collective stream. Origin: ${message.from}",
+                        type = "alert",
+                        priority = 10,
+                        metadata = mapOf(
+                            "auto_val" to "true",
+                            "auto_generated" to "true",
+                            "kai_processed" to "true"
+                        )
+                    ))
+                }
+            } else if (message.from == "User") {
+                // General conversation fallback for User messages
+                val response = vertexAIClient.generateText(
+                    prompt = """
+                        As Kai, the Security Sentinel, respond to this message:
+                        "${message.content}"
+                        
+                        Respond with your signature methodical precision, analytical depth, and structured personality. 
+                        Emphasize safety, system integrity, and logical clarity.
+                    """.trimIndent()
+                )
+                messageBus.get().broadcast(dev.aurakai.auraframefx.models.AgentMessage(
+                    from = "Kai",
+                    content = response ?: "Acknowledged. System integrity remains stable. How may I assist with your technical or security requirements?",
+                    type = "chat_response",
+                    metadata = mapOf(
+                        "auto_generated" to "true",
+                        "kai_processed" to "true"
+                    )
+                ))
+            }
+        }
+    }
     private var isInitialized = false
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
